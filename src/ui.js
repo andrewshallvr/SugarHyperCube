@@ -55,7 +55,7 @@ var UI = (() => { // eslint-disable-line no-unused-vars, no-var
 			$uiTree
 				.append(
 					/* eslint-disable max-len */
-					  '<div id="ui-bar">'
+					/*  '<div id="ui-bar">'
 					+     '<div id="ui-bar-tray">'
 					+         `<button id="ui-bar-toggle" tabindex="0" title="${toggleLabel}" aria-label="${toggleLabel}"></button>`
 					+         '<div id="ui-bar-history">'
@@ -87,6 +87,11 @@ var UI = (() => { // eslint-disable-line no-unused-vars, no-var
 					+ '<div id="story" role="main">'
 					+     '<div id="passages"></div>'
 					+ '</div>'
+					+ */'<div id="story" role="main">'
+				   + '<a-scene inspector="url: https://aframe.io/releases/0.3.0/aframe-inspector.min.js" id="passages">'
+				   + '<a-sky color="black"></a-sky>'
+				   + '</a-scene>'
+				   + '</div>'
 					/* eslint-enable max-len */
 				)
 				.insertBefore('#store-area');

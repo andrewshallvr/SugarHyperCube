@@ -2,6 +2,7 @@
 <html class="init-no-js">
 <head>
 <script src="https://aframe.io/releases/0.3.2/aframe.min.js"></script>
+<script src="https://rawgit.com/bryik/aframe-bmfont-text-component/master/dist/aframe-bmfont-text-component.min.js"></script>
 <meta charset="UTF-8" />
 <title>{{STORY_NAME}}</title>
 <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -38,14 +39,9 @@ if(document.head&&document.addEventListener&&document.querySelector&&Object.crea
 '{{BUILD_LIB_SOURCE}}'
 }else{document.documentElement.className="init-lacking"}
 </script>
-'{{BUILD_CSS_SOURCE}}'
+<!--'{{BUILD_CSS_SOURCE}}'-->
 </head>
 <body>
-	<a-scene>
-      <a-box color="#6173F4" opacity="0.8" depth="2"></a-box>
-      <a-sphere radius="2" src="texture.png" position="1 1 0"></a-sphere>
-      <a-sky color="#ECECEC"></a-sky>
-    </a-scene>
 	<div id="init-screen">
 		<p id="init-no-js"><noscript>Apologies! JavaScript is required. Please enable it to continue.</noscript></p>
 		<p id="init-lacking">Apologies! You are using an <strong>outdated</strong> browser which lacks required capabilities. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>

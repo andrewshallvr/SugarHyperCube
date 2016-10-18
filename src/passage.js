@@ -129,7 +129,7 @@ var Passage = (() => { // eslint-disable-line no-unused-vars, no-var
 		get text() {
 			if (this.element == null) { // lazy equality for null
 				const passage = Util.escape(this.title);
-				return `<span class="error" title="${passage}">${L10n.get('errorTitle')}: ${L10n.get('errorNonexistentPassage', { passage })}</span>`;
+				return `<span class='error' title='${passage}'>${L10n.get('errorTitle')}: ${L10n.get('errorNonexistentPassage', { passage })}</span>`;
 			}
 
 			// For Twine 1
@@ -137,9 +137,9 @@ var Passage = (() => { // eslint-disable-line no-unused-vars, no-var
 				return _twine1Unescape(this.element.textContent);
 			}
 			// For Twine 2
-			else {
+			/* else {
 				return this.element.textContent.replace(/\r/g, '');
-			}
+			}*/
 		}
 
 		description() {
@@ -204,10 +204,10 @@ var Passage = (() => { // eslint-disable-line no-unused-vars, no-var
 		}
 
 		render() {
-			if (DEBUG) { console.log(`[<Passage: "${this.title}">.render()]`); }
+			if (DEBUG) { console.log(`[<Passage: '${this.title}'>.render()]`); }
 
 			// Create and setup the new passage element.
-			const passageEl = document.createElement('div');
+			let passageEl = document.createElement('a-entity');
 			jQuery(passageEl)
 				.attr({
 					id             : this.domId,
@@ -215,6 +215,14 @@ var Passage = (() => { // eslint-disable-line no-unused-vars, no-var
 					'data-tags'    : this.tags.join(' ')
 				})
 				.addClass(`passage ${this.className}`);
+
+			passageEl.setAttribute('position', { x : 0, y : 2, z : 0 });
+			passageEl.setAttribute('bmfont-text', {
+													color : 'black',
+						   							fnt : 'https://crossorigin.me/https://01.keybase.pub/text/gentium.fnt',
+						   							fntImage : 'https://crossorigin.me/https://01.keybase.pub/text/gentium.png',
+						   							text : this.element.textContent
+			});
 
 			// Add the passage's classes to the <body>.
 			jQuery(document.body).addClass(this.className);
@@ -227,7 +235,7 @@ var Passage = (() => { // eslint-disable-line no-unused-vars, no-var
 			});
 
 			// Wikify the PassageHeader passage, if it exists, into the passage element.
-			if (Story.has('PassageHeader')) {
+			/* if (Story.has('PassageHeader')) {
 				new Wikifier(passageEl, Story.get('PassageHeader').processText());
 			}
 
@@ -242,7 +250,7 @@ var Passage = (() => { // eslint-disable-line no-unused-vars, no-var
 			// Convert breaks to paragraphs within the output passage.
 			if (Config.cleanupWikifierOutput) {
 				convertBreaks(passageEl);
-			}
+			}*/
 
 			// Execute post-render tasks.
 			Object.keys(postrender).forEach(task => {
